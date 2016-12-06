@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+</html>
+<script type="text/javascript">
+// 使用原型模式创建对象；解决了方法4中提到的缺陷，使不同的对象的函数（如sayFriends）指向了同一个函数。但它本身也有缺陷，就是实例共享了引用类型friends，从下面的代码执行结果可以看到，两个实例的friends的值是一样的，这可能不是我们所期望的。
+	function Person()
+{
+
+}
+
+Person.prototype = {
+    constructor : Person,
+    name:"kevin",
+    age:31,
+    job:"SE",
+    friends:["Jams","Martin"],
+    sayFriends:function()
+    {
+        alert(this.friends);
+    }
+};
+var person1 = new Person();
+person1.friends.push("Joe");
+person1.sayFriends();//Jams,Martin,Joe
+var person2 = new Person(); 
+person2.sayFriends();//James,Martin,Joe
+</script>
